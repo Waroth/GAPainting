@@ -24,8 +24,6 @@ void setup() {
 }
 
 void draw() {
-  Society.checkReproduction();
-  Society.checkDeath();
   Society.drawPopulation();
   println(Society.getPopulationSize());
 }
