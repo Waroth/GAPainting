@@ -13,14 +13,14 @@ class Population {
     loadPixels();
 
     for (Organism o : orgs) {
-      if (!pause) {
         o.move();
-      }
       o.drawOrganism();
     }
-
-    //updatePixels();
-    //println("================================");
+    
+    // MAKE ALL ACTIONS IN ONE LOOP
+    // MAKE REVERSE LOOP
+    // SET REMOVE FIRST
+    
   }
 
   void checkDeath() {
@@ -39,6 +39,10 @@ class Population {
 
   void addOrganism(DNA dna, PVector pos) {
     orgs.add(new Organism(dna, pos));
-    println("hey");
+    //println("hey");
+  }
+
+  int getPopulationSize() {
+    return orgs.size();
   }
 }

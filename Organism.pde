@@ -3,22 +3,30 @@ class Organism {
   DNA dna;
   boolean isDead;
   PVector position;
+  float lifetime;
 
   Organism() {
     dna = new DNA();
     isDead = false;
-    position = new PVector(random(width), random(height));
+    position = new PVector(random(width), random(0));
   }
 
   Organism(DNA _dna, PVector pos) {
     dna = new DNA(_dna);
     isDead = false;
-    position = new PVector(pos.x,pos.y);
+    position = new PVector(pos.x, pos.y);
   }
 
   void move() {
+    lifetime+=0.1;
     int character = dna.getCharacter();
     PVector direction = dna.getDirection();
+
+  
+    if (random(1) * dna.getIrrationality() > 0.95) {
+      character = floor(random(3));
+    }
+  
 
     switch (character) {
     case 0: // Tends to go straight
@@ -28,7 +36,7 @@ class Organism {
       direction.rotate(PI*0.001);
       break;
     case 2: // Tends to curve and evolve the curve
-      direction.rotate(PI*random(0.01));
+      direction.rotate(PI*random(0.001*lifetime));
       break;
     }
     position.add(direction);
@@ -46,8 +54,13 @@ class Organism {
 
     int pixelCount = floor(position.y) * width + floor(position.x);
 
+
+
     if (red(pixels[pixelCount]) > 250) {
       isDead = true;
+    } else if (dna.getStrength() == 0) {
+      isDead = true;
+      //println("hey");
     }
   }
 
@@ -56,13 +69,14 @@ class Organism {
   }
 
   void drawOrganism() {
+    strokeWeight(dna.getStrength());
     point(position.x, position.y);
   }
 
   void reproduce() {
     float percentage;
     percentage = dna.getFecundity() * Energy * random(1);
-    if (percentage > 0.5) {
+    if (percentage > 0.25) {
       Society.addOrganism(dna, position);
     }
   }

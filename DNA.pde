@@ -1,21 +1,30 @@
 class DNA {
 
   int character;
+  float cynycism;
   float irrationality;
   float fecundity;
+  float strength;
   PVector direction;
 
   DNA() {
     character = floor(random(3));
     irrationality = random(1);
     fecundity = random(1);
+    cynycism = random(1);
+    strength = 2;
     direction = new PVector(random(-1, 1), random(-1, 1));
   }
 
   DNA(DNA _dna) {
     character = _dna.getCharacter();
-    irrationality = random(1);
-    fecundity = random(1);
+    irrationality = _dna.getIrrationality();
+    fecundity = _dna.getFecundity() * random(1);
+    cynycism = _dna.getCynycism();
+    strength = _dna.getStrength()-0.2;
+    if (strength < 0) {
+      strength = 0;
+    }
     direction = new PVector(random(-1, 1), random(-1, 1));
   }
 
@@ -33,6 +42,14 @@ class DNA {
 
   float getFecundity() {
     return fecundity;
+  }
+
+  float getCynycism() {
+    return cynycism;
+  }
+
+  float getStrength() {
+    return strength;
   }
 }
 

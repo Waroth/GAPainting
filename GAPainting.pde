@@ -7,21 +7,16 @@ boolean pause;
 Population Society;
 
 
-
-
-
-
 void setup() {
 
   fullScreen(2);
   smooth();
   stroke(255);
-  background(200);
+  background(0);
   loadPixels();
   ellipseMode(CENTER);
 
-
-  PopulationSize = 100;
+  PopulationSize = 50;
   Energy = 1;
   Society = new Population();
 
@@ -30,8 +25,9 @@ void setup() {
 
 void draw() {
   Society.checkReproduction();
-  Society.drawPopulation();
   Society.checkDeath();
+  Society.drawPopulation();
+  println(Society.getPopulationSize());
 }
 
 void mousePressed() {
