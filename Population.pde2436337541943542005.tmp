@@ -1,0 +1,17 @@
+class Population {
+  
+  Organism[] orgs;
+  
+  Population() {
+    orgs = new Organism[PopulationSize];
+    for (int i = 0; i < orgs.length; i++) {
+      orgs[i] = new Organism();
+    }
+  }
+  
+  
+  
+  
+  
+  
+}
